@@ -1,28 +1,44 @@
 import type { FormProps } from 'antd';
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button, Form, Input, message } from 'antd';
 import './register.scss'
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { loginPage, registerPage } from '@/services/api';
 
 type FieldType = {
-    username?: string;
-    password?: string;
-    email?: string;
-    phone?: string;
+    fullName: string;
+    password: string;
+    email: string;
+    phone: string;
 };
 
 
 const RegisterPage = () => {
-
+    const navigate = useNavigate();
     const [isSubmit, setIsSubmit] = useState(false);
 
-    const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
+    const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
+        setIsSubmit(true);
         console.log('Success:', values);
+        const { email, password, phone, fullName } = values;
+
+        const res = await registerPage(fullName, password, email, phone);
+
+        if (res && res.data) {
+            message.success('Đăng ký thành công!');
+            navigate("/login");
+        } else {
+            message.error(res.message);
+        }
+        setIsSubmit(false);
     };
 
-    const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
-        console.log('Failed:', errorInfo);
-    };
+    // const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = async (errorInfo) => {
+    //     console.log('Failed:', errorInfo);
+    //     // console.log(import.meta.env.VITE_BACKEND_URL);
+    // };
+
+
 
     return (
         <>
@@ -36,12 +52,12 @@ const RegisterPage = () => {
                     style={{ maxWidth: 600 }}
                     initialValues={{ remember: true }}
                     onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}
+                    // onFinishFailed={onFinishFailed}
                     autoComplete="off"
                 >
                     <Form.Item<FieldType>
                         label="Họ tên"
-                        name="username"
+                        name="fullName"
                         rules={[{ required: true, message: 'Please input your username!' }]}
                     >
                         <Input />
