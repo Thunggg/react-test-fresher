@@ -1,9 +1,9 @@
 import type { FormProps } from 'antd';
 import { Button, Form, Input, message } from 'antd';
 import './register.scss'
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { loginPage, registerPage } from '@/services/api';
+import { registerPage } from '@/services/api';
 
 type FieldType = {
     fullName: string;
@@ -19,10 +19,10 @@ const RegisterPage = () => {
 
     const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
         setIsSubmit(true);
-        console.log('Success:', values);
         const { email, password, phone, fullName } = values;
 
         const res = await registerPage(fullName, password, email, phone);
+        setIsSubmit(false);
 
         if (res && res.data) {
             message.success('Đăng ký thành công!');
@@ -30,7 +30,6 @@ const RegisterPage = () => {
         } else {
             message.error(res.message);
         }
-        setIsSubmit(false);
     };
 
     // const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = async (errorInfo) => {
