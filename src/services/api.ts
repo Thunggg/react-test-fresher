@@ -7,5 +7,9 @@ export const registerPage = (fullName: string, password: string, email: string, 
 
 export const loginPage = (username: string, password: string) => {
     const baseURL = "api/v1/auth/login";
-    return axios.post<IBackendRes<ILogin>>(baseURL, { username, password });
+    return axios.post<IBackendRes<ILogin>>(baseURL, { username, password }, {
+        headers: {
+            delay: 5000
+        }
+    });
 }
