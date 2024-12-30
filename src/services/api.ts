@@ -13,3 +13,10 @@ export const loginPage = (username: string, password: string) => {
         }
     });
 }
+
+export const fetchAccountAPI = () => {
+    const baseURL = "api/v1/auth/account";
+    return axios.get<IBackendRes<IFetchAccount>>(baseURL);
+}
+
+

@@ -46,4 +46,8 @@ declare global {
         avatar: string;
         id: string;
     }
+
+    interface IFetchAccount {
+        user: IUser
+    }
 }
