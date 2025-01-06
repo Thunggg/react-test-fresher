@@ -18,6 +18,8 @@ import DashBoardPage from './pages/admin/dashboard';
 import ManageBookPage from './pages/admin/manage.book';
 import ManageOrderPage from './pages/admin/manage.order';
 import ManageUserPage from './pages/admin/manage.user';
+import { ConfigProvider } from "antd";
+import enUS from 'antd/locale/en_US';
 
 const router = createBrowserRouter([
   {
@@ -95,10 +97,11 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    {/* <Layout /> */}
     <App>
       <AppProvider>
-        <RouterProvider router={router} />
+        <ConfigProvider locale={enUS}>
+          <RouterProvider router={router} />
+        </ConfigProvider>
       </AppProvider>
     </App>
   </StrictMode>,
