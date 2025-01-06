@@ -23,4 +23,8 @@ export const fetchAccountAPI = () => {
     });
 }
 
+export const logoutAPI = () => {
+    const baseURL = "api/v1/auth/logout";
+    return axios.post<IBackendRes<IRegister>>(baseURL);
+}
 
