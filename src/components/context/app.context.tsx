@@ -55,6 +55,7 @@ export const AppProvider = (props: IProps) => {
                     }}>
                     <PacmanLoader
                         size={50}
+                        color="#6EC2F7"
                     />
                 </div>
             }
