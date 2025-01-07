@@ -70,9 +70,9 @@ const TableUser = () => {
             columns={columns}
             actionRef={actionRef}
             cardBordered
-            request={async (sort, filter) => {
-                console.log(sort, filter);
-                const res = await getUserAPI();
+            request={async (params, sort, filter) => {
+                console.log(params, sort, filter);
+                const res = await getUserAPI(params?.current ?? 1, params?.pageSize ?? 5);
                 if (res.data) {
                     setMeta(res.data.meta);
                 }
@@ -90,7 +90,8 @@ const TableUser = () => {
                     pageSize: meta.pageSize,
                     showSizeChanger: true,
                     total: meta.total,
-                    showTotal: (total, range) => { return (<div>{range[0]} - {range[1]} trên {total} rows</div>) }
+                    showTotal: (total, range) => { return (<div>{range[0]} - {range[1]} trên {total} rows</div>) },
+                    pageSizeOptions: ['5', '10', '20', '50', '100'], // Các tùy chọn số lượng
                 }
             }
             headerTitle="Table user"
