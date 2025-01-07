@@ -44,7 +44,7 @@ const LayoutAdmin = () => {
             children: [
                 {
                     label: <Link to='/admin/user'>CRUD</Link>,
-                    key: '/admin/user',
+                    key: '/admin/user/crud',
                     icon: <TeamOutlined />,
                 },
             ]

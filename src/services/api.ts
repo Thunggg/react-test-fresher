@@ -28,7 +28,12 @@ export const logoutAPI = () => {
     return axios.post<IBackendRes<IRegister>>(baseURL);
 }
 
-export const getUserAPI = (current: number, pageSize: number) => {
-    const baseURL = `api/v1/user?current=${current}&pageSize=${pageSize}`;
+// export const getUserAPI = (current: number, pageSize: number) => {
+//     const baseURL = `api/v1/user?current=${current}&pageSize=${pageSize}`;
+//     return axios.get<IBackendRes<IModelPaginate<IUserTable>>>(baseURL);
+// }
+
+export const getUserAPI = (query: string) => {
+    const baseURL = `api/v1/user?${query}`;
     return axios.get<IBackendRes<IModelPaginate<IUserTable>>>(baseURL);
 }
