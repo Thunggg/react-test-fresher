@@ -1,6 +1,4 @@
-import { useState } from 'react';
-import { Badge, Button, Descriptions, Drawer } from 'antd';
-import { DescriptionsProps } from 'antd/lib';
+import { Avatar, Badge, Descriptions, Drawer } from 'antd';
 import dayjs from 'dayjs';
 
 type IProps = {
@@ -12,6 +10,8 @@ type IProps = {
 
 const DetailUser = (props: IProps) => {
     const { openViewDetail, setOpenViewDetail, dataViewDetail, setDataViewDetail } = props;
+    const imageURL = `${import.meta.env.VITE_BACKEND_URL}/images/avatar/${dataViewDetail?.avatar}`;
+
 
     const items = [
         {
@@ -37,15 +37,18 @@ const DetailUser = (props: IProps) => {
         {
             key: '5',
             label: 'Role',
-            span: 4,
-            // children: dataViewDetail?.role || 'N/A',
-            // <Badge status="processing" text={dataViewDetail?.role} />
             children: (
                 <Badge
                     status={dataViewDetail?.role === 'ADMIN' ? 'success' : 'processing'}
                     text={dataViewDetail?.role || 'N/A'}
                 />
             )
+        },
+        {
+            key: '5',
+            label: 'Avatar',
+            children: <Avatar size={40} src={imageURL}></Avatar>,
+
         },
         {
             key: '6',

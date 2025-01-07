@@ -3,9 +3,8 @@ import { dateRangeValidate } from '@/services/helper';
 import { DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
-import { Button, Divider } from 'antd';
+import { Button } from 'antd';
 import { useRef, useState } from 'react';
-import { TbRulerMeasure } from 'react-icons/tb';
 import DetailUser from './detail.user';
 
 type TSearch = {
